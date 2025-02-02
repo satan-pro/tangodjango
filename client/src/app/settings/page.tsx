@@ -52,9 +52,9 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 p-4 w-[75vw]">
       <div>
-        <h3 className="text-lg font-medium">Settings</h3>
+        <h2 className="text-3xl font-bold tracking-tight">Settings</h2>
         <p className="text-sm text-muted-foreground">Manage your account settings and preferences.</p>
       </div>
       <Separator />
