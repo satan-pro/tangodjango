@@ -12,6 +12,14 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Slider } from "@/components/ui/slider"
 import { PostLoanView } from "@/app/dashboard/post-loan-view"
+import { BankCard } from "@/components/bank-cards"
+
+type BankData = {
+  "Bank/NBFC": string
+  "Interest Rate (p.a.)": string
+  Tenure: string
+  "Processing Fee": string
+}
 
 const formSchema = z.object({
   age: z.number().min(21, { message: "Age must be at least 21" }),
@@ -30,6 +38,7 @@ const formSchema = z.object({
 export default function DashboardPage() {
   const [isApproved, setIsApproved] = useState(false)
   const [loanToIncome, setLoanToIncome] = useState(0)
+  const [bankData, setBankData] = useState<BankData[]>([])
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -55,6 +64,28 @@ export default function DashboardPage() {
       setLoanToIncome((loanAmount / income) * 100)
     }
   }, [form.watch("loanAmount"), form.watch("income"), form]) // Added form to dependencies
+
+  useEffect(() => {
+    fetch(
+      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/BankNBFC-InterestRatepa-Tenure-ProcessingFee-yMX6FUe42O6AelaTyO4dzbbejc6OHh.csv",
+    )
+      .then((response) => response.text())
+      .then((text) => {
+        const rows = text.split("\n").slice(1)
+        const data = rows
+          .map((row) => {
+            const [name, interestRate, tenure, processingFee] = row.split(",").map((item) => item.trim())
+            return {
+              "Bank/NBFC": name,
+              "Interest Rate (p.a.)": interestRate,
+              Tenure: tenure,
+              "Processing Fee": processingFee,
+            }
+          })
+          .filter((item) => item["Bank/NBFC"] !== "") // Remove empty rows
+        setBankData(data)
+      })
+  }, [])
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     // This would typically make an API call to your Django backend
@@ -326,6 +357,21 @@ export default function DashboardPage() {
           </CardContent>
         </Card>
       </div>
+      <div className="mt-8">
+        <h2 className="text-2xl font-bold mb-4">Available Loan Options</h2>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {bankData.map((bank, index) => (
+            <BankCard
+              key={index}
+              name={bank["Bank/NBFC"]}
+              interestRate={bank["Interest Rate (p.a.)"]}
+              tenure={bank["Tenure"]}
+              processingFee={bank["Processing Fee"]}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   )
 }
+
