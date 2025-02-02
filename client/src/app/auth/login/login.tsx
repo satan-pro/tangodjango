@@ -15,30 +15,31 @@ interface SignUpFormData {
 }
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const router = useRouter();
 
   const initialFormData: SignUpFormData = {
-      email: "",
-      password: "",
-    };
-  
+    email: "",
+    password: "",
+  };
+
   const [formData, setFormData] = useState<SignUpFormData>(initialFormData);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-
     const { data, error } = await supabase.auth.signInWithPassword({
-      email: formData.email,
-      password: formData.password,
-    })
+        email: formData.email,
+        password: formData.password,
+      })
 
     if (error) {
+      alert("Check your console for the error");
       console.error("Login error:", error.message);
-      return;
+    } else {
+      router.push("/dashboard"); // Redirect after signup
     }
   };
+
+  
 
   return (
     <div className="w-full max-w-md space-y-8">
@@ -47,8 +48,8 @@ export default function Login() {
             <Logo className="text-2xl"/>
         </div>
         <div>
-          <h1 className="text-2xl font-medium">Get Started</h1>
-          <p className="mt-2 text-gray-600">Welcome to CredEasy - Let&apos;s create your account</p>
+          <h1 className="text-2xl font-medium">Log In to your Account</h1>
+          <p className="mt-2 text-gray-600">Welcome to CredEasy - Let&apos;s sign you in</p>
         </div>
       </div>
 
@@ -92,7 +93,7 @@ export default function Login() {
         </Button>
 
         <div className="text-center text-gray-500">
-          Don't have an account?{" "}
+          Dont have an account?{" "}
           <Link href="/auth/signup" className="text-black hover:underline">
             Sign Up
           </Link>

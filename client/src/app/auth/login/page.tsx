@@ -1,5 +1,5 @@
 import InfoSection from "./info";
-import Login from "./login";
+import SignUpForm from "./login";
 
 
 export default function SignUpPage() {
@@ -7,7 +7,7 @@ export default function SignUpPage() {
     <div className="h-screen w-screen overflow-hidden bg-white" suppressHydrationWarning>
       <div className="grid h-full w-full grid-cols-2">
         <div className="flex items-center justify-center px-16">
-          <Login />
+          <SignUpForm />
         </div>
         <InfoSection />
       </div>

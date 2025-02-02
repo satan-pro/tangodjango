@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import Divider from "@/components/ui/divider";
 import { supabase } from "../../../lib/supabaseClient";
 import { useRouter } from "next/navigation";
 import { Logo } from "../../../components/logo";
@@ -16,10 +15,6 @@ interface SignUpFormData {
 }
 
 export default function Signup() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [role, setRole] = useState("customer");
-  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const initialFormData: SignUpFormData = {
@@ -31,14 +26,10 @@ export default function Signup() {
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-
     const { data, error } = await supabase.auth.signUp({
       email: formData.email,
       password: formData.password,
     })
-
-    setLoading(false);
 
     if (error) {
       alert("Check your console for the error");
