@@ -4,7 +4,6 @@ import type React from "react"
 import type { Metadata } from "next"
 
 import { MainNav } from "@/components/main-nav"
-import { ThemeToggle } from "@/components/theme-toggle"
 import { UserNav } from "@/components/user-nav"
 import { SidebarProvider } from "@/components/ui/sidebar"
 
