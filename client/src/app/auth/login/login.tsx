@@ -35,6 +35,7 @@ export default function Login() {
       alert("Check your console for the error");
       console.error("Login error:", error.message);
     } else {
+        console.log(data);
       router.push("/dashboard"); // Redirect after signup
     }
   };

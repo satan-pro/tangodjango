@@ -35,6 +35,7 @@ export default function Signup() {
       alert("Check your console for the error");
       console.error("Signup error:", error.message);
     } else {
+        console.log(data);
       alert("Check your email to confirm your account!");
       router.push("/auth/login"); // Redirect after signup
     }
