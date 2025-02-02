@@ -118,7 +118,7 @@ const SidebarProvider = React.forwardRef<
               ...style,
             } as React.CSSProperties
           }
-          className={cn("group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar", className)}
+          className={cn("group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar text-lg", className)}
           ref={ref}
           {...props}
         >
@@ -143,7 +143,7 @@ const Sidebar = React.forwardRef<
   if (collapsible === "none") {
     return (
       <div
-        className={cn("flex h-full w-[--sidebar-width] flex-col bg-sidebar text-sidebar-foreground", className)}
+        className={cn("flex h-full w-[--sidebar-width] flex-col bg-sidebar text-sidebar-foreground text-lg", className)}
         ref={ref}
         {...props}
       >
@@ -363,7 +363,7 @@ const SidebarGroupLabel = React.forwardRef<HTMLDivElement, React.ComponentProps<
         ref={ref}
         data-sidebar="group-label"
         className={cn(
-          "duration-200 flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium text-sidebar-foreground/70 outline-none ring-sidebar-ring transition-[margin,opa] ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
+          "duration-200 flex h-8 shrink-0 items-center rounded-md px-2 font-medium text-sidebar-foreground/70 outline-none ring-sidebar-ring transition-[margin,opa] ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0 text-md",
           "group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0",
           className,
         )}
@@ -453,7 +453,7 @@ const SidebarMenuButton = React.forwardRef<
       data-sidebar="menu-button"
       data-size={size}
       data-active={isActive}
-      className={cn(sidebarMenuButtonVariants({ variant, size }), className)}
+      className={cn(sidebarMenuButtonVariants({ variant, size }), className, "text-lg")}
       {...props}
     />
   )
@@ -599,7 +599,7 @@ const SidebarMenuSubButton = React.forwardRef<
       data-size={size}
       data-active={isActive}
       className={cn(
-        "flex h-7 min-w-0 -translate-x-px items-center gap-2 overflow-hidden px-2 text-sidebar-foreground outline-none ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 [&>svg]:text-sidebar-accent-foreground",
+        "flex h-7 min-w-0 -translate-x-px items-center gap-2 overflow-hidden px-2 text-sidebar-foreground outline-none ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 [&>svg]:text-sidebar-accent-foreground text-lg",
         "data-[active=true]:bg-[#E5F5EF] dark:data-[active=true]:bg-[#1C3829] data-[active=true]:text-sidebar-accent-foreground data-[active=true]:after:absolute data-[active=true]:after:right-0 data-[active=true]:after:top-0 data-[active=true]:after:h-full data-[active=true]:after:w-1 data-[active=true]:after:bg-[#00875A] dark:data-[active=true]:after:bg-[#1DB96E]",
         size === "sm" && "text-xs",
         size === "md" && "text-sm",

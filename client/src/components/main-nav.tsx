@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { LayoutDashboard, LineChart, Settings } from "lucide-react"
+import { HandCoins, LayoutDashboard, LineChart, Settings } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import {
@@ -20,6 +20,11 @@ const routes = [
     title: "Dashboard",
     icon: LayoutDashboard,
     href: "/dashboard",
+  },
+  {
+    title: "Loans",
+    icon: HandCoins,
+    href: "/loans",
   },
   {
     title: "Analytics",
@@ -50,7 +55,7 @@ export function MainNav() {
                 isActive={pathname === route.href}
                 className={cn(
                   "w-full",
-                  pathname === route.href ? "bg-primary text-primary-foreground hover:bg-primary/90" : "hover:bg-muted",
+                  pathname === route.href ? "bg-primary text-primary-foreground " : "hover:bg-muted",
                 )}
               >
                 <Link href={route.href}>
