@@ -40,9 +40,7 @@ export default function RootLayout({
             <div className="flex min-h-screen">
               <MainNav />
               <div className="flex-1">
-                <header className="flex h-14 items-center gap-4 border-b bg-background px-6">
-                  <div className="flex-1" />
-                  <ThemeToggle />
+                <header className="flex h-30 items-center gap-4 border-b bg-background px-6">
                   <UserNav />
                 </header>
                 <main className="flex-1 space-y-4 p-8 pt-6">{children}</main>
