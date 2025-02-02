@@ -16,8 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import LoanProductViewSet
+
+router = DefaultRouter()
+router.register('loans', LoanProductViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('api', include(loans.urls)),  setup loan app url under /api/
+    path('', include(router.urls)),
 ]
