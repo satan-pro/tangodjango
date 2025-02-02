@@ -1,0 +1,57 @@
+# Python-related
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# Virtual environment
+venv/
+env/
+.venv/
+.env/
+
+# Django-specific
+*.log
+*.sqlite3
+db.sqlite3
+media/
+staticfiles/
+*.pot
+*.pyc
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+
+# Environment variables
+.env.local
+.env.production
+
+# Coverage reports
+htmlcov/
+.coverage
+
+# Jupyter Notebook files (if any)
+.ipynb_checkpoints/
+
+# Pytest cache
+.cache/
+
+# MyPy
+.mypy_cache/
+
+# Sphinx documentation (if any)
+docs/_build/
+
+# Ignore generated files from Django migrations
+loans/migrations/*.py
+loans/migrations/__init__.py
+
+# Ignore backup files created by editors
+*~ 
